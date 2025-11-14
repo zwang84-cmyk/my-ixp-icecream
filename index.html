@@ -115,10 +115,21 @@
         .cup-icon {
             width: 100px;
             height: 120px;
-            background: linear-gradient(180deg, #a8d8ea 0%, #85c7de 100%);
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    #a8d8ea 0px,
+                    #a8d8ea 8px,
+                    #95cee3 8px,
+                    #95cee3 16px
+                ),
+                linear-gradient(180deg, #a8d8ea 0%, #7bbfd9 100%);
             border-radius: 0 0 40px 40px;
             position: relative;
-            box-shadow: inset 0 -10px 20px rgba(0,0,0,0.1);
+            box-shadow:
+                inset 0 -10px 20px rgba(0,0,0,0.15),
+                inset -3px 0 8px rgba(0,0,0,0.1),
+                inset 3px 0 8px rgba(255,255,255,0.3);
             filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
         }
 
@@ -129,8 +140,23 @@
             left: -10px;
             right: -10px;
             height: 20px;
-            background: #a8d8ea;
+            background: linear-gradient(180deg, #b8e3f0 0%, #a8d8ea 100%);
             border-radius: 10px;
+            box-shadow:
+                inset 0 -2px 4px rgba(0,0,0,0.1),
+                0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .cup-icon::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10%;
+            width: 20px;
+            height: 60px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+            border-radius: 50%;
+            filter: blur(4px);
         }
 
         .container-label {
@@ -211,10 +237,38 @@
             height: 120px;
             border-radius: 50%;
             background: linear-gradient(135deg, #f0f0f0 0%, #d0d0d0 100%);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15), inset -5px -5px 15px rgba(0,0,0,0.1);
+            box-shadow:
+                0 4px 10px rgba(0,0,0,0.15),
+                inset -5px -5px 15px rgba(0,0,0,0.1),
+                inset 10px 10px 20px rgba(255,255,255,0.5);
             position: absolute;
             opacity: 0;
             animation: dropScoop 0.6s ease forwards;
+        }
+
+        .scoop::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 20%;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(4px);
+        }
+
+        .scoop::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            background:
+                radial-gradient(ellipse at 30% 30%, rgba(255,255,255,0.4) 0%, transparent 40%),
+                radial-gradient(ellipse at 70% 70%, rgba(0,0,0,0.1) 0%, transparent 50%);
         }
 
         @keyframes dropScoop {
@@ -415,6 +469,47 @@
 
         .ribbon-icon {
             background: linear-gradient(135deg, #ffd700 0%, #ffb347 100%);
+        }
+
+        .whipped-icon {
+            background: linear-gradient(135deg, #fffef7 0%, #f5f3e8 100%);
+            position: relative;
+        }
+
+        .whipped-icon::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f6ed 100%);
+            border-radius: 50%;
+        }
+
+        .cherry-icon {
+            background: radial-gradient(circle, #ff4757 0%, #c92a2a 100%);
+            position: relative;
+        }
+
+        .cherry-icon::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            width: 2px;
+            height: 10px;
+            background: #2d3436;
+        }
+
+        .sauce-icon {
+            background: linear-gradient(135deg, #8b4513 0%, #5c2e0f 100%);
+        }
+
+        .wafer-icon {
+            background: linear-gradient(135deg, #daa520 0%, #b8860b 100%);
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
         }
 
         .ice-cream-plate {
@@ -770,13 +865,25 @@
                         <div class="decoration-icon sprinkles-icon"></div>
                         <span>Rainbow Sprinkles</span>
                     </div>
+                    <div class="decoration-chip" draggable="true" data-decoration="whipped">
+                        <div class="decoration-icon whipped-icon"></div>
+                        <span>Whipped Cream</span>
+                    </div>
+                    <div class="decoration-chip" draggable="true" data-decoration="cherry">
+                        <div class="decoration-icon cherry-icon"></div>
+                        <span>Cherry on Top</span>
+                    </div>
                     <div class="decoration-chip" draggable="true" data-decoration="heart">
                         <div class="decoration-icon heart-icon"></div>
                         <span>Heart Candy</span>
                     </div>
-                    <div class="decoration-chip" draggable="true" data-decoration="ribbon">
-                        <div class="decoration-icon ribbon-icon"></div>
-                        <span>Ribbon Candy</span>
+                    <div class="decoration-chip" draggable="true" data-decoration="sauce">
+                        <div class="decoration-icon sauce-icon"></div>
+                        <span>Chocolate Sauce</span>
+                    </div>
+                    <div class="decoration-chip" draggable="true" data-decoration="wafer">
+                        <div class="decoration-icon wafer-icon"></div>
+                        <span>Wafer Cookie</span>
                     </div>
                 </div>
                 <div class="ice-cream-plate">
@@ -1009,11 +1116,17 @@
                         `;
 
                         if (decoration === 'sprinkles') {
-                            overlay.textContent = '🌈';
+                            overlay.innerHTML = '<div style="font-size: 0.5em; display: flex; flex-wrap: wrap; gap: 3px;">🟥🟦🟨🟩🟪🟧🟥🟦🟨🟩</div>';
+                        } else if (decoration === 'whipped') {
+                            overlay.innerHTML = '<div style="width: 80px; height: 60px; background: linear-gradient(135deg, #fffef7 0%, #f5f3e8 100%); border-radius: 50% 50% 40% 40%; box-shadow: inset -3px -3px 8px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.2);"></div>';
+                        } else if (decoration === 'cherry') {
+                            overlay.innerHTML = '<div style="position: relative;"><div style="width: 25px; height: 25px; background: radial-gradient(circle, #ff4757 0%, #c92a2a 100%); border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.3), inset -2px -2px 5px rgba(0,0,0,0.2), inset 3px 3px 8px rgba(255,255,255,0.4);"></div><div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 3px; height: 20px; background: linear-gradient(180deg, #2d3436 0%, #636e72 100%); border-radius: 2px;"></div></div>';
                         } else if (decoration === 'heart') {
                             overlay.textContent = '💖';
-                        } else if (decoration === 'ribbon') {
-                            overlay.textContent = '🎀';
+                        } else if (decoration === 'sauce') {
+                            overlay.innerHTML = '<div style="width: 100px; height: 80px; background: linear-gradient(180deg, transparent 0%, #8b4513 60%, #5c2e0f 100%); border-radius: 50%; opacity: 0.8; filter: blur(1px);"></div>';
+                        } else if (decoration === 'wafer') {
+                            overlay.innerHTML = '<div style="width: 8px; height: 100px; background: repeating-linear-gradient(45deg, #daa520 0px, #daa520 5px, #b8860b 5px, #b8860b 10px); border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); transform: rotate(-20deg);"></div>';
                         }
 
                         decorationDisplay.appendChild(overlay);
@@ -1069,9 +1182,19 @@
                     font-size: 2em;
                 `;
 
-                if (decoration === 'sprinkles') overlay.textContent = '🌈';
-                else if (decoration === 'heart') overlay.textContent = '💖';
-                else if (decoration === 'ribbon') overlay.textContent = '🎀';
+                if (decoration === 'sprinkles') {
+                    overlay.innerHTML = '<div style="font-size: 0.4em; display: flex; flex-wrap: wrap; gap: 2px;">🟥🟦🟨🟩🟪🟧🟥🟦</div>';
+                } else if (decoration === 'whipped') {
+                    overlay.innerHTML = '<div style="width: 60px; height: 45px; background: linear-gradient(135deg, #fffef7 0%, #f5f3e8 100%); border-radius: 50% 50% 40% 40%; box-shadow: inset -3px -3px 8px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.2);"></div>';
+                } else if (decoration === 'cherry') {
+                    overlay.innerHTML = '<div style="position: relative;"><div style="width: 20px; height: 20px; background: radial-gradient(circle, #ff4757 0%, #c92a2a 100%); border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.3), inset -2px -2px 5px rgba(0,0,0,0.2), inset 3px 3px 8px rgba(255,255,255,0.4);"></div><div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 2px; height: 15px; background: linear-gradient(180deg, #2d3436 0%, #636e72 100%); border-radius: 2px;"></div></div>';
+                } else if (decoration === 'heart') {
+                    overlay.textContent = '💖';
+                } else if (decoration === 'sauce') {
+                    overlay.innerHTML = '<div style="width: 80px; height: 60px; background: linear-gradient(180deg, transparent 0%, #8b4513 60%, #5c2e0f 100%); border-radius: 50%; opacity: 0.8; filter: blur(1px);"></div>';
+                } else if (decoration === 'wafer') {
+                    overlay.innerHTML = '<div style="width: 6px; height: 80px; background: repeating-linear-gradient(45deg, #daa520 0px, #daa520 4px, #b8860b 4px, #b8860b 8px); border-radius: 3px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); transform: rotate(-20deg);"></div>';
+                }
 
                 iceCreamContainer.appendChild(overlay);
             });
@@ -1108,8 +1231,11 @@
             const flavorNames = state.flavors.map(f => f.flavor.charAt(0).toUpperCase() + f.flavor.slice(1)).join(', ');
             const decorationNames = state.decorations.map(d => {
                 if (d === 'sprinkles') return 'Rainbow Sprinkles 🌈';
+                if (d === 'whipped') return 'Whipped Cream 🍦';
+                if (d === 'cherry') return 'Cherry on Top 🍒';
                 if (d === 'heart') return 'Heart Candy 💖';
-                if (d === 'ribbon') return 'Ribbon Candy 🎀';
+                if (d === 'sauce') return 'Chocolate Sauce 🍫';
+                if (d === 'wafer') return 'Wafer Cookie 🍪';
             }).join(', ') || 'None';
 
             summaryText.innerHTML = `
